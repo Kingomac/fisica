@@ -1,6 +1,7 @@
 let canvas: HTMLCanvasElement;
 let ctx: CanvasRenderingContext2D;
 let imanes: Iman[];
+let funcionando:boolean = false;
 
 function start() {
   canvas = < HTMLCanvasElement > document.getElementById('game');
@@ -15,7 +16,10 @@ function start() {
       i.dividir();
     })
   }
-  update();
+  if(!funcionando){
+    update();
+    funcionando = true;
+  }
 }
 
 function update() {
@@ -59,9 +63,9 @@ class Iman {
     }
   }
   dividir() {
+    if (imanes.length * 2 >= 8) start();
     if (!this.dividido) {
       this.dividido = true;
-      if (imanes.length * 2 >= 8) start();
       setInterval(() => {
         if (this.activo) this.tiempo++;
       }, 1000);
@@ -74,9 +78,11 @@ class Iman {
 
 function convertirDosImanes(id: number) {
   let i = imanes[id];
-  imanes[id].activo = false;
-  imanes.push(new Iman(imanes.length, i.posicionN.x, i.posicionN.y, i.width / 2, i.height, ctx));
-  imanes.push(new Iman(imanes.length, i.posicionS.x, i.posicionS.y, i.width / 2, i.height, ctx));
+  if(typeof imanes[id] !== 'undefined') {
+    imanes[id].activo = false;
+    imanes.push(new Iman(imanes.length, i.posicionN.x, i.posicionN.y, i.width / 2, i.height, ctx));
+    imanes.push(new Iman(imanes.length, i.posicionS.x, i.posicionS.y, i.width / 2, i.height, ctx));
+  }
 }
 function signoRandom():number{
   if(Math.random() >= 0.5) return 1;

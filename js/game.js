@@ -1,6 +1,7 @@
 var canvas;
 var ctx;
 var imanes;
+var funcionando = false;
 function start() {
     canvas = document.getElementById('game');
     canvas.scrollIntoView();
@@ -14,7 +15,10 @@ function start() {
             i.dividir();
         });
     };
-    update();
+    if (!funcionando) {
+        update();
+        funcionando = true;
+    }
 }
 function update() {
     ctx.clearRect(0, 0, 1000, 1000);
@@ -50,10 +54,10 @@ var Iman = /** @class */ (function () {
     };
     Iman.prototype.dividir = function () {
         var _this = this;
+        if (imanes.length * 2 >= 8)
+            start();
         if (!this.dividido) {
             this.dividido = true;
-            if (imanes.length * 2 >= 8)
-                start();
             setInterval(function () {
                 if (_this.activo)
                     _this.tiempo++;
@@ -67,9 +71,11 @@ var Iman = /** @class */ (function () {
 }());
 function convertirDosImanes(id) {
     var i = imanes[id];
-    imanes[id].activo = false;
-    imanes.push(new Iman(imanes.length, i.posicionN.x, i.posicionN.y, i.width / 2, i.height, ctx));
-    imanes.push(new Iman(imanes.length, i.posicionS.x, i.posicionS.y, i.width / 2, i.height, ctx));
+    if (typeof imanes[id] !== 'undefined') {
+        imanes[id].activo = false;
+        imanes.push(new Iman(imanes.length, i.posicionN.x, i.posicionN.y, i.width / 2, i.height, ctx));
+        imanes.push(new Iman(imanes.length, i.posicionS.x, i.posicionS.y, i.width / 2, i.height, ctx));
+    }
 }
 function signoRandom() {
     if (Math.random() >= 0.5)
