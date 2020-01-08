@@ -31,7 +31,7 @@ var Iman = /** @class */ (function () {
         this.id = id;
         this.posicionN = new Vector2(x, y);
         this.posicionS = new Vector2(x + width / 2, y);
-        this.velocidad = new Vector2(0.4, 0.07);
+        this.velocidad = new Vector2(0.3, 0.1 * signoRandom());
         this.width = width;
         this.height = height;
         this.ctx = ctx;
@@ -50,16 +50,18 @@ var Iman = /** @class */ (function () {
     };
     Iman.prototype.dividir = function () {
         var _this = this;
-        this.dividido = true;
-        if (imanes.length * 2 > 16)
-            start();
-        setInterval(function () {
-            if (_this.activo)
-                _this.tiempo++;
-        }, 1000);
-        setTimeout(function () {
-            convertirDosImanes(_this.id);
-        }, 3000);
+        if (!this.dividido) {
+            this.dividido = true;
+            if (imanes.length * 2 >= 8)
+                start();
+            setInterval(function () {
+                if (_this.activo)
+                    _this.tiempo++;
+            }, 1000);
+            setTimeout(function () {
+                convertirDosImanes(_this.id);
+            }, 3000);
+        }
     };
     return Iman;
 }());
@@ -68,4 +70,10 @@ function convertirDosImanes(id) {
     imanes[id].activo = false;
     imanes.push(new Iman(imanes.length, i.posicionN.x, i.posicionN.y, i.width / 2, i.height, ctx));
     imanes.push(new Iman(imanes.length, i.posicionS.x, i.posicionS.y, i.width / 2, i.height, ctx));
+}
+function signoRandom() {
+    if (Math.random() >= 0.5)
+        return 1;
+    else
+        return -1;
 }
