@@ -17,10 +17,10 @@
         game: 'game'
       }
     })
-    requirejs(['base', 'game'], function() {})
+    requirejs(['base', 'game'], function () {})
   </script>
   <style>
-    p{
+    p {
       text-align: justify;
     }
   </style>
@@ -37,17 +37,20 @@
               magnetismo na materia?</p>
             <p>Non se poden separar os polos dun imán porque se divides un imán en dous intentando illar un polo, os
               dous fragmentos resultantes terán cadanseu polo norte e sur.</p>
-              <p>
-                Aquí unha pequena representación gráfica de como sería sen ter en conta as atraccións entre os fragmentos resultantes, fai click para dividir o imán á metade.
-                <button onclick="start()" class="btn btn-secondary btn-block">Probar</button>
-              </p>
+            <p>
+              Aquí unha pequena representación gráfica de como sería sen ter en conta as atraccións entre os fragmentos
+              resultantes, fai click para dividir o imán á metade.
+              <button onclick="start()" class="btn btn-secondary btn-block">Probar</button>
+            </p>
           </li>
           <li class="list-group-item">
             <p>3. Representa as liñas de campo magnético producido por un imán permanente, por unha bobina e por un fío
               rectilíneo polos que circula unha corrente</p>
-            <p> <img class="img-fluid"
-                src="https://firebasestorage.googleapis.com/v0/b/e-portfolio-2ffac.appspot.com/o/F%C3%ADsica%2Fdefinitivo.png?alt=media&token=16d21f4c-5044-4bd9-a1b6-805831676c50"
-                alt="É o apartado 3 pero non funciona, tería que revisalo." /> </p>
+            <p><a
+                href="https://firebasestorage.googleapis.com/v0/b/e-portfolio-2ffac.appspot.com/o/F%C3%ADsica%2Fdefinitivo.png?alt=media&token=16d21f4c-5044-4bd9-a1b6-805831676c50">
+                <img class="img-fluid"
+                  src="https://firebasestorage.googleapis.com/v0/b/e-portfolio-2ffac.appspot.com/o/F%C3%ADsica%2Fdefinitivo.png?alt=media&token=16d21f4c-5044-4bd9-a1b6-805831676c50"
+                  alt="É o apartado 3 pero non funciona, tería que revisalo." /></a> </p>
           </li>
         </div>
         <div class="col-12 col-sm-6">
@@ -70,7 +73,7 @@
         </div>
       </div>
     </ul>
-    <canvas class="mt-4" id="game" width="700px" height="300px"></canvas>
+    <canvas style="display: none;" class="mt-4" id="game" width="700px" height="300px"></canvas>
 </body>
 
 </html>

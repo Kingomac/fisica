@@ -4,6 +4,8 @@ var imanes;
 var funcionando = false;
 function start() {
     canvas = document.getElementById('game');
+    if (canvas.style.display == "none")
+        canvas.style.display = "block";
     canvas.scrollIntoView();
     canvas.style.border = "solid 2px black";
     ctx = canvas.getContext('2d');
